@@ -31,3 +31,13 @@ class SystemInfo:
         info["operating_system"]=platform.system()  # this function return OS name like windows, linux, etc.
         info["operating_system_version"]=platform.version() # this function return system version
         info["hostname"]=platform.node()  # this function return hostname of the machine
+        
+        #Assign hardware info like CPU and Ram into the map
+        info["cpu_usage"]=psutil.cpu_percent(interval=1)  # this function return CPU usage percentage
+        memoryview=psutil.virtual_memory() #Return about system memory usage 
+        info["total_memory"]=memoryview.total
+        info["used_memory"]=memoryview.used
+        info["percent_memory"]=memoryview.percent
+
+
+        
