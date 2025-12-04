@@ -39,5 +39,20 @@ class SystemInfo:
         info["used_memory"]=memoryview.used
         info["percent_memory"]=memoryview.percent
 
-
+        #Assign spend time info into the map
+         # this function return the system boot time
+        boot_time=datetime.datetime.fromtimestamp(psutil.boot_time())
+        # show the current time
+        current_time=datetime.datetime.now
         
+        #Calculate the time spent since boot
+        spend_time=current_time()-boot_time
+        info["uptime"]=str(spend_time)
+
+        #Assign logged in users info into the list
+        users=[]
+        for user in psutil.users():
+            users.append({"name": user.name,"started":str(user.started)})  # this function return the list of logged in users
+        info["logged_in_users"]=users
+
+        return info
