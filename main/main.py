@@ -1,6 +1,11 @@
-def main():
-    print("Incident Response and Threat Automation Tool running...")
+from pyfiglet import Figlet
+from rich.console import Console
 
+console = Console()
 
-if __name__== "__main__":
-    main()    
+# ASCII banner
+fig = Figlet(font="ansi_shadow")  # you can try 'big', 'slant', 'rectangles'
+ascii_banner = fig.renderText("Incident Response Automate Script")
+
+# Print ASCII banner in neon green
+console.print(ascii_banner, style="bold #00ff66")

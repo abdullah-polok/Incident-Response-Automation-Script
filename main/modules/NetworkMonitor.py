@@ -35,7 +35,7 @@ class NetworkMonitor:
             data={
                 "pid":connect.pid,
                 "local_address":f"{connect.laddr.port}" if connect.laddr else "N/A",
-                "remote_address":f"{connect.raddr.ip}:{connect.raddr.port}" if connect.raddr else "N/A",
+                "remote_address":f"{connect.raddr.port}" if connect.raddr else "N/A",
                 "status":connect.status
             }
             all_connections.append(data)
