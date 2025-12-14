@@ -30,8 +30,9 @@ import platform
 
 class LogCollector:
 
-    def __init__(self,output_folder):
+    def collectLogs(self,output_folder):
         results=[]
+
         if platform.system()!="Linux":
             return ["Log collection works linux only"]
         

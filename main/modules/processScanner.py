@@ -54,6 +54,6 @@ class ProcessScanner:
                      }      
 
 
-p1=ProcessScanner()
-print(p1.scanProcesses())
+# p1=ProcessScanner()
+# print(p1.scanProcesses())
                 
