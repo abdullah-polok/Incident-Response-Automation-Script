@@ -26,7 +26,7 @@ import psutil
 class NetworkMonitor:
     def __init__(self):
         self.unknown_ports=[5555,4444,13327,31337,12345,54321,9999]
-    def scanconnections(self):
+    def scanConnections(self):
         all_connections=[]
         suspicious_connections=[]
 
@@ -43,6 +43,6 @@ class NetworkMonitor:
             if connect.laddr and connect.laddr.port in self.unknown_ports:
                 suspicious_connections.append(data)
         return {
-           "All Connections":all_connections,
-           "All suspicious Connections": suspicious_connections
+           "all_connections":all_connections,
+           "all_suspicious_connections": suspicious_connections
        }

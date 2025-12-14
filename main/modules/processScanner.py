@@ -49,8 +49,8 @@ class ProcessScanner:
                     if word in data["name"]:
                          suspicious_processes.append(data)
 
-            return { "All Process:":all_processes,
-                     "All Suspicious Process":suspicious_processes
+            return { "all_Process:":all_processes,
+                     "all_suspicious_Process":suspicious_processes
                      }      
 
 
