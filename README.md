@@ -17,3 +17,15 @@ python main.py --network
 # Hash a specific file
 
 python main.py --hash /path/to/file
+
+# Demo Folder
+
+The demo folder contains simple scripts used to test detection features.
+
+network.py
+Simulates a network activity to test the network monitoring module.
+
+unknown_process.py
+Runs a process with an unusual name to test the process scanner.
+
+These files are safe and only used for demonstration.
