@@ -1,2 +1,0 @@
-[console_scripts]
-ira-tool = incident_response.main:main

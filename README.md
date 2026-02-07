@@ -22,10 +22,10 @@ python main.py --hash /path/to/file
 
 The demo folder contains simple scripts used to test detection features.
 
-network.py
-Simulates a network activity to test the network monitoring module.
+- network.py
+  Simulates a network activity to test the network monitoring module.
 
-unknown_process.py
-Runs a process with an unusual name to test the process scanner.
+- unknown_process.py
+  Runs a process with an unusual name to test the process scanner.
 
 These files are safe and only used for demonstration.
