@@ -4,11 +4,12 @@ from pathlib import Path
 # Your banner tools
 from pyfiglet import Figlet
 from rich.console import Console
+from rich.panel import Panel
 
 console = Console()
 
 def show_banner():
-    fig = Figlet(font="ansi_shadow")
+    fig = Figlet(font="standard")
     text = fig.renderText("Incident Response Tool")
     console.print(f"[bold #00ff66]{text}[/bold #00ff66]")
 
@@ -29,11 +30,15 @@ def make_output_folder():
 
 
 def main():
+    
     # Always show banner first
     show_banner()
 
     parser = argparse.ArgumentParser(description="Incident Response Automation Tool", add_help=False)  # Disable default help printing
-   
+
+    # Show your name in red with a border
+    console.print(Panel("Made by Abdullah Al Rahman", style="bold red", border_style="red"))
+
     parser.add_argument("--full", action="store_true", help="Run full scan (all modules)")
     parser.add_argument("--system", action="store_true", help="Collect system information")
     parser.add_argument("--processes", action="store_true", help="Scan processes for suspicious activity")
@@ -80,11 +85,11 @@ def main():
 
     if args.processes:
         print("[+] Running PROCESS scan...")
-        print(ProcessScanner().scanProcesses()["all_suspicious_Process"])
+        print(ProcessScanner().scanProcesses()["all_suspicious_process"])
 
     if args.network:
         print("[+] Running NETWORK scan...")
-        print(NetworkMonitor().scanconnections()["all_suspicious_connections"])
+        print(NetworkMonitor().scanConnections()["all_suspicious_connections"])
 
     if args.logs:
         print("[+] Collecting LOGS...")

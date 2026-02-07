@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: incident-response-automation
+Version: 0.1.0
+Summary: A simple Incident Response Automation Script CLI tool
+Home-page: https://github.com/abdullah-polok/Incident-Response-Automation-Script
+Author: Abdullah Al Rahman
+Author-email: abdullahalrahman23@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pyfiglet
+Requires-Dist: rich
+
+# Incident Response and Threat Automation Tool
+
+A python-based command-line tool that automates system artifact collection, process scanning,anomaly detection,file integrity checks,and forensic reporting.
+
+# Run a full scan
+
+python main.py --full
+
+# Collect only system information
+
+python main.py --system
+
+# Scan network connections
+
+python main.py --network
+
+# Hash a specific file
+
+python main.py --hash /path/to/file

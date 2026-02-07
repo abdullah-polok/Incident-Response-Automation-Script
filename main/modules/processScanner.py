@@ -28,32 +28,52 @@ import psutil # for system and process utilities
 
 class ProcessScanner:
     def __init__(self):
-        self.unknown_words=["unknown","powershell","curl","bash","netcat","wget"]  # List of known suspicious process names
+        self.unknown_words = ["unknown", "powershell", "curl", "bash", "netcat", "wget"]
 
     def scanProcesses(self):
-            all_processes=[]
-            suspicious_processes=[]
+        all_processes = []
+        suspicious_processes = []
 
-            #https://psutil.readthedocs.io/en/latest/#psutil.process_iter
-            
-            for process in psutil.process_iter(["pid", "name","username"]):
-               data={
-                    "pid:":process.info["pid"],
-                    "name":process.info["name"],
-                    "user":process.info["username"]
-               }
-               all_processes.append(data)   
+#https://psutil.readthedocs.io/en/latest/#psutil.process_iter
+        for proc in psutil.process_iter(["pid", "name", "username", "cmdline"]):
+            try:
+                pid = proc.info["pid"]
+                name = proc.info["name"] or ""
+                username = proc.info["username"]
+                cmdline = proc.info.get("cmdline") or []
 
-               #check the process name is suspicious
-               for word in self.unknown_words:
-                    if word in data["name"]:
-                         suspicious_processes.append(data)
+                data = {
+                    "pid": pid,
+                    "name": name,
+                    "user": username,
+                    "cmdline": cmdline
+                }
+                all_processes.append(data)
 
-            return { "all_Process:":all_processes,
-                     "all_suspicious_Process":suspicious_processes
-                     }      
+                # Check suspicious words in process name or command line
+                found = False
+                for word in self.unknown_words:
+                    if word.lower() in name.lower():
+                        found = True
+                        break
+                    # Check command line arguments
+                    for arg in cmdline:
+                        if word.lower() in arg.lower():
+                            found = True
+                            break
+                    if found:
+                        break
 
+                if found:
+                    suspicious_processes.append(data)
 
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+
+        return {
+            "all_process": all_processes,
+            "all_suspicious_process": suspicious_processes
+        }
 # p1=ProcessScanner()
 # print(p1.scanProcesses())
                 
